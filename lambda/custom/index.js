@@ -2,6 +2,7 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk-core');
+const dashbot = require('dashbot')(REPLACE_WITH_YOUR_DASHBOT_API_KEY).alexa;
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -92,7 +93,7 @@ const ErrorHandler = {
 
 const skillBuilder = Alexa.SkillBuilders.custom();
 
-exports.handler = skillBuilder
+exports.handler = dashbot.handler(skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     HelloWorldIntentHandler,
@@ -101,4 +102,4 @@ exports.handler = skillBuilder
     SessionEndedRequestHandler
   )
   .addErrorHandlers(ErrorHandler)
-  .lambda();
+  .lambda());
